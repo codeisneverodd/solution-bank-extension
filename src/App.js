@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import React from 'react';
+import CopySolution from "./pages/CopySolution";
+
 function App() {
-    return <Wrapper>안녕하세요</Wrapper>
+    return <Wrapper><CopySolution/></Wrapper>
 }
 
 export default App;
