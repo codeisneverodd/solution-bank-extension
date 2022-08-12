@@ -1,4 +1,4 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render('Hello', document.querySelector('body'))
+ReactDOM.render(<h1>hi</h1>, document.querySelector('body'))
