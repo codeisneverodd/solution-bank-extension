@@ -1,0 +1,40 @@
+{
+  "short_name": "Solution Pass",
+  "name": "프로그래머스 정답 통과기",
+  "description": "프로그래머스 코딩 테스트 연습을 통과하고 싶으신가요? 문제 풀이 페이지에서 익스텐션을 클릭해보세요!",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "http://*/*",
+    "https://*/*"
+  ],
+  "browser_action": {
+    "default_popup": "reactProject/build/index.html",
+    "default_icon": {
+      "16": "assets/solutionBankExtensionIcon16.png",
+      "32": "assets/solutionBankExtensionIcon32.png",
+      "48": "assets/solutionBankExtensionIcon48.png",
+      "128": "assets/solutionBankExtensionIcon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/learn/courses/30/lessons/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "icons": {
+    "16": "assets/solutionBankExtensionIcon16.png",
+    "32": "assets/solutionBankExtensionIcon32.png",
+    "48": "assets/solutionBankExtensionIcon48.png",
+    "128": "assets/solutionBankExtensionIcon128.png"
+  },
+  "content_security_policy": "script-src 'self' 'sha256-fdAfMKZtCTRPKMRznGwonJHC++vCCrQS7XFnVrzSXAE=' 'sha256-YD8w9VLrdvqI5/tFVmpT+1337ly+e/JvPrkRxYZo/w4='; object-src 'self';"
+}
