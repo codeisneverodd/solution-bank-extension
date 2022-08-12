@@ -8,8 +8,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'Output Management',
-            template: "./public/index.html"
+            template: "./src/index.html",
+            minify: true,
         }),
     ],
     output: {
