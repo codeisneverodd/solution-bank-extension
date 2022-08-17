@@ -3,15 +3,11 @@ import { useState } from "react";
 const useContentScript = () => {
   const [responseFromContent, setResponseFromContent] = useState("");
 
-  const requestToContentScript = (key) => {
-    const queryInfo = { active: true, lastFocusedWindow: true };
-    chrome.tabs &&
-      chrome.tabs.query(queryInfo, (tabs) => {
-        const currentTabId = tabs[0].id;
-        chrome.tabs.sendMessage(currentTabId, key, (response) => {
-          setResponseFromContent(response);
-        });
-      });
+  const requestToContentScript = async (key) => {
+    const queryOptions = { active: true, lastFocusedWindow: true };
+    const [currentTab] = await chrome.tabs.query(queryOptions);
+    const response = await chrome.tabs.sendMessage(currentTab.id, key);
+    setResponseFromContent(response);
   };
   return {
     responseFromContent,
