@@ -1,57 +1,26 @@
-const useApi = () => {
+const getSolutionListByLevel = async (level) => {
   const GET_SOLUTION_LIST_BASE_URL = `https://api.github.com/repos/codeisneverodd/programmers-coding-test/contents/`;
-  const requestSolutionList = async (level) => {
+  try {
     const url = GET_SOLUTION_LIST_BASE_URL + `level-${level}`;
     const response = await fetch(url);
     return await response.json();
-  };
-  return {
-    requestSolutionList,
-  };
+  } catch (e) {
+    console.log(e.error + "Getting solution list by level has been failed");
+  }
 };
 
-const useLocalStorage = () => {
-  const setSolutionList = (value) => {
-    localStorage.setItem("solutionList", JSON.stringify(value));
-  };
-  const getSolutionList = () =>
-    JSON.parse(localStorage.getItem("solutionList"));
-  return {
-    setSolutionList,
-    getSolutionList,
-  };
-};
-
-const useSolutionList = () => {
+const fetchSolutionList = async () => {
+  const localStorage = chrome.storage.local;
   const POSSIBLE_LEVEL = [1, 2, 3, 4, 5];
-  const { requestSolutionList } = useApi();
-  const { setSolutionList, getSolutionList } = useLocalStorage();
-
-  const fetchSolutionListToLocalStorage = () => {
-    setSolutionList([]);
-    POSSIBLE_LEVEL.forEach((level) => {
-      requestSolutionList(level).then((response) => {
-        setSolutionList([...getSolutionList(), ...response]);
-      });
-    });
-  };
-
-  return {
-    fetchSolutionListToLocalStorage,
-  };
+  const key = "solutionList";
+  await localStorage.set({ [key]: [] });
+  for (const level of POSSIBLE_LEVEL) {
+    const response = await getSolutionListByLevel(level);
+    const prevSolutionList = await localStorage.get(key);
+    await localStorage.set({ [key]: [...prevSolutionList[key], ...response] });
+  }
+  console.log(await localStorage.get(key));
 };
-
-const init = () => {
-  const { fetchSolutionListToLocalStorage } = useSolutionList();
-  const { getSolutionList } = useLocalStorage();
-  fetchSolutionListToLocalStorage();
-
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message === "getSolutionList") {
-      const solutionList = getSolutionList();
-      sendResponse(solutionList);
-    }
-  });
-};
-
-init();
+chrome.runtime.onInstalled.addListener(() => {
+  fetchSolutionList();
+});
