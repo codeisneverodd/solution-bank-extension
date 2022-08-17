@@ -42,6 +42,11 @@ const Description = styled.div`
   font-size: ${(props) => props.fontSize}rem;
   margin-top: 1.2rem;
   color: ${colors.white};
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.4;
+  width: 70%;
 `;
 const ErrorReport = styled.div`
   display: flex;

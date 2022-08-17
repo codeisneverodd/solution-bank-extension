@@ -28,7 +28,7 @@ const init = async () => {
   chrome.runtime.onMessage.addListener(
     async (message, sender, sendResponse) => {
       if (message === "getSolution") {
-        if (solutions) {
+        if (solutions[0]) {
           sendResponse(solutions[0]);
         } else {
           sendResponse("noSolution");

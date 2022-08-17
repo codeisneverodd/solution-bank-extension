@@ -1,7 +1,11 @@
 export const requestToContentScript = async (key) => {
-  const queryOptions = { active: true, lastFocusedWindow: true };
-  const [currentTab] = await chrome.tabs.query(queryOptions);
-  return await chrome.tabs.sendMessage(currentTab.id, key);
+  try {
+    const queryOptions = { active: true, lastFocusedWindow: true };
+    const [currentTab] = await chrome.tabs.query(queryOptions);
+    return await chrome.tabs.sendMessage(currentTab.id, key);
+  } catch (e) {
+    return false;
+  }
 };
 export const localStorage = {
   async get(key) {
