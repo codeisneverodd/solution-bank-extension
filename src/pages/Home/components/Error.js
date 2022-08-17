@@ -1,8 +1,8 @@
 import ErrorReportLayout from "../layout/errorReportLayout";
 import { retryImage } from "../../../shared/images";
 import colors from "../../../shared/constants/colors";
-import React from 'react';
-const Retry = () => (
+import React from "react";
+const Error = () => (
   <ErrorReportLayout
     iconSrc={retryImage}
     description={"다시 시도해주세요"}
@@ -11,4 +11,4 @@ const Retry = () => (
   />
 );
 
-export default Retry;
+export default Error;
