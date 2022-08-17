@@ -1,3 +1,5 @@
+import { localStorage } from "../shared/utils/chrome.js";
+
 const getFileContentAPI = async (download_url) => {
   const response = await fetch(download_url);
   return await response.text();
@@ -23,9 +25,7 @@ const getTitleFromPage = () => {
 
 const getSolution = async (solutionList) => {
   const problemTitle = getTitleFromPage();
-  console.log(problemTitle);
   const { formattedFileName, splitCodeToSolutions } = utils;
-  console.log(solutionList);
   const solution = solutionList.find(
     (file) => formattedFileName(file.name) === problemTitle
   );
@@ -35,13 +35,11 @@ const getSolution = async (solutionList) => {
 };
 
 const init = async () => {
-  const localStorage = chrome.storage.local;
   const key = "solutionList";
   const solutionList = await localStorage.get(key);
-  const solutions = await getSolution(solutionList[key]);
+  const solutions = await getSolution(solutionList);
   chrome.runtime.onMessage.addListener(
     async (message, sender, sendResponse) => {
-      console.log(solutions);
       if (message === "getSolution") {
         if (solutions) {
           sendResponse(solutions[0]);
