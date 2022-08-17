@@ -9,7 +9,6 @@ export const localStorage = {
     return response[key];
   },
   async set(key, value) {
-    const response = await chrome.storage.local.set({ [key]: value });
-    return response;
+    return await chrome.storage.local.set({ [key]: value });
   },
 };

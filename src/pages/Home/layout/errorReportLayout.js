@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Image } from "../../../shared/components";
 import colors from "../../../shared/constants/colors";
-import React from 'react';
+import React from "react";
 const ErrorReportLayout = ({
   iconSrc,
   description,
@@ -14,7 +14,14 @@ const ErrorReportLayout = ({
         <Image src={iconSrc} width={2.4} height={2.4} />
         <Description fontSize={fontSize}>{description}</Description>
       </Alert>
-      <ErrorReport>오류 제보하기</ErrorReport>
+      <ErrorReport
+        as={"a"}
+        href={
+          "https://github.com/codeisneverodd/programmers-coding-test/issues"
+        }
+      >
+        오류 제보하기
+      </ErrorReport>
     </Wrapper>
   );
 };
