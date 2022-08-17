@@ -12,3 +12,7 @@ export const localStorage = {
     return await chrome.storage.local.set({ [key]: value });
   },
 };
+
+export const linkTo = (url) => {
+  return chrome.tabs.create({ url });
+};

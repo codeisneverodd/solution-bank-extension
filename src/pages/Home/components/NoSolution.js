@@ -2,14 +2,21 @@ import colors from "../../../shared/constants/colors";
 import { Image } from "../../../shared/components";
 import { cryingImage } from "../../../shared/images";
 import styled from "styled-components";
-import React from 'react';
+import React from "react";
+import { linkTo } from "../../../shared/utils/chrome";
+import { REPORT_SOLUTION_LINK } from "../../../shared/constants/links";
 
 const NoSolution = () => {
+  const handleReportClick = (e) => {
+    linkTo(REPORT_SOLUTION_LINK);
+  };
   return (
     <Wrapper>
       <Image src={cryingImage} width={3.4} height={3.4} />
       <Description>준비된 정답이 없어요</Description>
-      <SolutionReportButton>정답 제보하기</SolutionReportButton>
+      <SolutionReportButton onClick={handleReportClick}>
+        정답 제보하기
+      </SolutionReportButton>
     </Wrapper>
   );
 };
@@ -45,4 +52,7 @@ const SolutionReportButton = styled.div`
   background-color: ${colors.blue};
   color: ${colors.white};
   border-radius: 1.5rem;
+  &:hover {
+    cursor: pointer;
+  }
 `;

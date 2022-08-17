@@ -7,6 +7,7 @@ const ErrorReportLayout = ({
   description,
   fontSize = 2.2,
   backgroundColor = colors.green,
+  handleErrorClick,
 }) => {
   return (
     <Wrapper>
@@ -14,14 +15,7 @@ const ErrorReportLayout = ({
         <Image src={iconSrc} width={2.4} height={2.4} />
         <Description fontSize={fontSize}>{description}</Description>
       </Alert>
-      <ErrorReport
-        as={"a"}
-        href={
-          "https://github.com/codeisneverodd/programmers-coding-test/issues"
-        }
-      >
-        오류 제보하기
-      </ErrorReport>
+      <ErrorReport onClick={handleErrorClick}>오류 제보하기</ErrorReport>
     </Wrapper>
   );
 };
@@ -58,4 +52,7 @@ const ErrorReport = styled.div`
   height: 2.7rem;
   font-size: 1.1rem;
   color: ${colors.white};
+  &:hover {
+    cursor: pointer;
+  }
 `;
