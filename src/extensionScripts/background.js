@@ -1,14 +1,5 @@
 import { localStorage } from "../shared/utils/chrome.js";
-const getSolutionListByLevel = async (level) => {
-  const GET_SOLUTION_LIST_BASE_URL = `https://api.github.com/repos/codeisneverodd/programmers-coding-test/contents/`;
-  try {
-    const url = GET_SOLUTION_LIST_BASE_URL + `level-${level}`;
-    const response = await fetch(url);
-    return await response.json();
-  } catch (e) {
-    console.log(e.error + "Getting solution list by level has been failed");
-  }
-};
+import { getSolutionListByLevel } from "../shared/utils/api.js";
 
 const fetchSolutionList = async () => {
   const POSSIBLE_LEVEL = [1, 2, 3, 4, 5];

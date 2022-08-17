@@ -1,9 +1,5 @@
 import { localStorage } from "../shared/utils/chrome.js";
-
-const getFileContentAPI = async (download_url) => {
-  const response = await fetch(download_url);
-  return await response.text();
-};
+import { getFileContentAPI } from "../shared/utils/api.js";
 
 const utils = {
   formattedFileName: (fileName) =>
