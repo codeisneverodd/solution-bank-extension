@@ -3,7 +3,7 @@ import { useContentScript } from "../../hooks";
 import Success from "./components/Success";
 import Retry from "./components/Retry";
 import { NoSolution } from "./components";
-import React from 'react';
+import React from "react";
 
 const CopySolution = () => {
   const { requestToContentScript, responseFromContent } = useContentScript();
@@ -15,7 +15,8 @@ const CopySolution = () => {
   const [status, setStatus] = useState(statusString.copied);
 
   useEffect(() => {
-    requestToContentScript("getSolution");
+    const key = "getSolution";
+    requestToContentScript(key);
   }, []);
 
   useEffect(() => {
