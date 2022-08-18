@@ -8,7 +8,7 @@ import {
 const getTitleFromPage = () => {
   return document
     .querySelector("li.nav-item.algorithm-nav-link.algorithm-title")
-    .textContent.trim();
+    ?.textContent.trim();
 };
 
 const getSolution = async (solutionList) => {
