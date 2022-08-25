@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Image } from "../../../shared/components";
 import colors from "../../../shared/constants/colors";
-import React from 'react';
+import React from "react";
 const ErrorReportLayout = ({
   iconSrc,
   description,
   fontSize = 2.2,
   backgroundColor = colors.green,
+  handleErrorClick,
 }) => {
   return (
     <Wrapper>
@@ -14,7 +15,7 @@ const ErrorReportLayout = ({
         <Image src={iconSrc} width={2.4} height={2.4} />
         <Description fontSize={fontSize}>{description}</Description>
       </Alert>
-      <ErrorReport>오류 제보하기</ErrorReport>
+      <ErrorReport onClick={handleErrorClick}>오류 제보하기</ErrorReport>
     </Wrapper>
   );
 };
@@ -41,6 +42,11 @@ const Description = styled.div`
   font-size: ${(props) => props.fontSize}rem;
   margin-top: 1.2rem;
   color: ${colors.white};
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.4;
+  width: 70%;
 `;
 const ErrorReport = styled.div`
   display: flex;
@@ -51,4 +57,7 @@ const ErrorReport = styled.div`
   height: 2.7rem;
   font-size: 1.1rem;
   color: ${colors.white};
+  &:hover {
+    cursor: pointer;
+  }
 `;
