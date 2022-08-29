@@ -29,7 +29,7 @@ const init = async () => {
     async (message, sender, sendResponse) => {
       if (message === "getSolution") {
         if (solutions[0]) {
-          sendResponse(solutions[0]);
+          sendResponse(solutions[0]+solutions[1]);
         } else {
           sendResponse("noSolution");
         }
