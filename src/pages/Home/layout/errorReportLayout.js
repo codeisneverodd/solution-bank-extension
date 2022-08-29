@@ -47,6 +47,7 @@ const Description = styled.div`
   text-align: center;
   line-height: 1.4;
   width: 70%;
+  word-break: keep-all;
 `;
 const ErrorReport = styled.div`
   display: flex;

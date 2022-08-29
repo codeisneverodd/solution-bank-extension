@@ -7,9 +7,9 @@ import { ISSUE_LINK } from "../../../shared/constants/links";
 const Success = () => (
   <ErrorReportLayout
     iconSrc={successImage}
-    description={"정답 복사됨"}
+    description={"클립보드에 정답 복사됨"}
     backgroundColor={colors.green}
-    fontSize={2.2}
+    fontSize={1.8}
     handleErrorClick={(e) => {
       linkTo(ISSUE_LINK);
     }}
