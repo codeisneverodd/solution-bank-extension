@@ -22,9 +22,14 @@ const getSolution = async (solutionList) => {
 };
 
 const init = async () => {
-  const key = "solutionList";
-  const solutionList = await localStorage.get(key);
+  const solutionKey = "solutionList";
+  const expireDateKey = 'expireDate'
+  const solutionList = await localStorage.get(solutionKey);
   const solutions = await getSolution(solutionList);
+  const expireDate = await localStorage.get(expireDateKey)
+
+  if(expireDate < Date.now()) chrome.runtime.sendMessage('updateSolution');
+
   chrome.runtime.onMessage.addListener(
     async (message, sender, sendResponse) => {
       if (message === "getSolution") {

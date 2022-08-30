@@ -10,8 +10,18 @@ const fetchSolutionList = async () => {
     const prevSolutionList = await localStorage.get(key);
     await localStorage.set(key, [...prevSolutionList, ...response]);
   }
-  console.log(await localStorage.get(key));
+  await fetchExpireDate();
+  console.log('Solutions: ' + await localStorage.get(key) ? 'fetched': 'fetch fail');
+  console.log('expireDate: ' + new Date(await localStorage.get('expireDate')))
 };
+const fetchExpireDate = async () =>{
+  const key = 'expireDate';
+  const fourHour = 4 * 60 * 60 * 1000;
+  await localStorage.set(key, fourHour + Date.now());
+}
 chrome.runtime.onInstalled.addListener(() => {
   fetchSolutionList();
 });
+chrome.runtime.onMessage.addListener((message)=>{
+  if(message === 'updateSolution') fetchSolutionList();
+})
