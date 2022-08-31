@@ -5,9 +5,7 @@
   "version": "0.3.0",
   "manifest_version": 3,
   "permissions": [
-    "storage",
-    "tabs",
-    "activeTab"
+    "storage"
   ],
   "host_permissions": [
     "https://*/learn/courses/30/lessons/*"
