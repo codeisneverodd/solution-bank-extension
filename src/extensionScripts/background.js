@@ -9,9 +9,7 @@ const fetchSolutions = async () =>{
   return solutions;
 }
 
-chrome.runtime.onInstalled.addListener(() => {
-  fetchSolutions();
-});
+chrome.runtime.onInstalled.addListener(() => fetchSolutions);
 
 chrome.runtime.onMessage.addListener((message)=>{
   if(message === 'updateSolution') fetchSolutions();
