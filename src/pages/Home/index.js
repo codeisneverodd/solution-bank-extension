@@ -33,7 +33,7 @@ const CopySolution = () => {
     setSolution(solution);
     setTimeout(() => {
       setStatus(getCurrentStatus(solution));
-    }, 700);
+    }, 500);
   }, []);
 
   return (
